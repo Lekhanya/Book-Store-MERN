@@ -2,9 +2,11 @@
 import express from "express"
 import { PORT, mongodbUri  } from "./config.js"
 import mongoose, { mongo } from "mongoose"
-import { Book } from "./models/bookModel.js"
 import bookRoutes from "./routes/bookRoutes.js"
+import authRoutes from "./routes/authRoutes.js"
 import cors from "cors"
+
+// const { PORT, mongodbUri } = process.env
 
 const app = express()
 
@@ -22,6 +24,7 @@ app.use((req, res, next) => {
 // }))
 
 app.use("/books", bookRoutes)
+app.use("/signup", authRoutes)
 
 app.get('/', (req, res) => {
     console.log(req)
